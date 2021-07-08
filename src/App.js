@@ -3,6 +3,8 @@ import './App.scss';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 import PostList from './components/PostList';
+import Clock from './components/Clock';
+import PostFiltersForm from './components/PostFiltersForm';
 import Pagination from './components/Pagination';
 import React, { useState, useEffect } from 'react';
 import queryString from "query-string";
@@ -25,6 +27,7 @@ function App() {
         _limit: 10,
         _page: 1,
     });
+    const [showClock, setShowClock] = useState(true);
 
     useEffect(() => {
         async function fetchPostList() {
@@ -78,17 +81,34 @@ function App() {
         });
     }
 
+    function handleFiltersChange(newFilters) {
+        console.log({newFilters})
+        setFilters({
+            ...filters,
+            page: 1,
+            title_like: newFilters.searchTerm
+        });
+    }
+
     return (
         <div className="app">
             <h1>React hooks - PostList</h1>
+            {showClock && <Clock />}
+            <button onClick={() => setShowClock(false)}>Hide Clock</button>
+            {/*
+            <PostFiltersForm onSubmit={handleFiltersChange} />
+
             <PostList posts={postList}/>
-            {/* <TodoForm onSubmit={handleTodoFormSubmit} />
-            <TodoList todos={todoList} onTodoClick={handleTodoClick}/ > */}
+
+            <TodoForm onSubmit={handleTodoFormSubmit} />
+
+            <TodoList todos={todoList} onTodoClick={handleTodoClick}/ >
 
             <Pagination
                 pagination={pagination}
                 onPageChange={handlePageChange}
             />
+            */}
         </div>
     );
 }

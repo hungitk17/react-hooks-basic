@@ -7,6 +7,7 @@ import Clock from './components/Clock';
 import BetterClock from './components/BetterClock';
 import PostFiltersForm from './components/PostFiltersForm';
 import Pagination from './components/Pagination';
+import MagicBox from './components/MagicBox';
 import React, { useState, useEffect } from 'react';
 import queryString from "query-string";
 //https://js-post-api.herokuapp.com/api/posts?_limit=10&_page=1
@@ -94,9 +95,11 @@ function App() {
     return (
         <div className="app">
             <h1>React hooks - PostList</h1>
-            {showClock && <Clock />}
+            <MagicBox />
+
+            {/* {showClock && <Clock />}
             <BetterClock />
-            <button onClick={() => setShowClock(false)}>Hide Clock</button>
+            <button onClick={() => setShowClock(false)}>Hide Clock</button> */}
 
             {/*
             <PostFiltersForm onSubmit={handleFiltersChange} />
